@@ -1,0 +1,10 @@
+C:\Users\User\Desktop\Prog\graph\l3\l3\bin\Debug\l3.exe.config
+C:\Users\User\Desktop\Prog\graph\l3\l3\bin\Debug\l3.exe
+C:\Users\User\Desktop\Prog\graph\l3\l3\bin\Debug\l3.pdb
+C:\Users\User\Desktop\Prog\graph\l3\l3\obj\Debug\l3.csprojAssemblyReference.cache
+C:\Users\User\Desktop\Prog\graph\l3\l3\obj\Debug\l3.Properties.Resources.resources
+C:\Users\User\Desktop\Prog\graph\l3\l3\obj\Debug\l3.csproj.GenerateResource.cache
+C:\Users\User\Desktop\Prog\graph\l3\l3\obj\Debug\l3.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Prog\graph\l3\l3\obj\Debug\l3.exe
+C:\Users\User\Desktop\Prog\graph\l3\l3\obj\Debug\l3.pdb
+C:\Users\User\Desktop\Prog\graph\l3\l3\obj\Debug\l3.Form1.resources

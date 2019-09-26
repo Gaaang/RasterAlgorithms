@@ -7,3 +7,13 @@ C:\Users\andre\Desktop\lab3-1\lab3-1\bin\Debug\lab3-1.exe
 C:\Users\andre\Desktop\lab3-1\lab3-1\bin\Debug\lab3-1.pdb
 C:\Users\andre\Desktop\lab3-1\lab3-1\obj\Debug\lab3-1.exe
 C:\Users\andre\Desktop\lab3-1\lab3-1\obj\Debug\lab3-1.pdb
+D:\Users\User\Documents\GitHub\RasterAlgorithms\lab3-1\lab3-1\bin\Debug\lab3-1.exe.config
+D:\Users\User\Documents\GitHub\RasterAlgorithms\lab3-1\lab3-1\bin\Debug\lab3-1.exe
+D:\Users\User\Documents\GitHub\RasterAlgorithms\lab3-1\lab3-1\bin\Debug\lab3-1.pdb
+D:\Users\User\Documents\GitHub\RasterAlgorithms\lab3-1\lab3-1\obj\Debug\lab3-1.csprojAssemblyReference.cache
+D:\Users\User\Documents\GitHub\RasterAlgorithms\lab3-1\lab3-1\obj\Debug\raster_algorithms.Form1.resources
+D:\Users\User\Documents\GitHub\RasterAlgorithms\lab3-1\lab3-1\obj\Debug\lab3_1.Properties.Resources.resources
+D:\Users\User\Documents\GitHub\RasterAlgorithms\lab3-1\lab3-1\obj\Debug\lab3-1.csproj.GenerateResource.cache
+D:\Users\User\Documents\GitHub\RasterAlgorithms\lab3-1\lab3-1\obj\Debug\lab3-1.csproj.CoreCompileInputs.cache
+D:\Users\User\Documents\GitHub\RasterAlgorithms\lab3-1\lab3-1\obj\Debug\lab3-1.exe
+D:\Users\User\Documents\GitHub\RasterAlgorithms\lab3-1\lab3-1\obj\Debug\lab3-1.pdb

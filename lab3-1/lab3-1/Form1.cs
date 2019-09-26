@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Linq;
+using System.Text;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,9 +16,9 @@ namespace raster_algorithms
         private Graphics g;
         Point lastPoint = Point.Empty;
         bool isMouseDown = false;
-        int penThickness = 1;
-        Color borderColor = Color.FromArgb(255, 0, 0, 0);
-        Color fillColor = Color.Green;
+        int penThickness = 1;                               //толщина карандаша
+        Color borderColor = Color.FromArgb(255, 0, 0, 0);   //цвет карандаша
+        Color fillColor = Color.Yellow;                     //цвет заливки по умолчанию
         Pen borderPen;
         Pen fillPen;
         TextureBrush textureBrush;
@@ -36,7 +36,7 @@ namespace raster_algorithms
             g.Clear(Color.White);
             update_pens();
 
-            radioPen.Checked = true;
+            radioPen.Checked = true;//по умолчанию рисуем карандашом
         }
 
         private void update_pens()
@@ -45,6 +45,7 @@ namespace raster_algorithms
             fillPen = new Pen(fillColor, 1);
         }
 
+        //мышь на элементе управления,кнопка мыши нажата
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             lastPoint = e.Location;
@@ -52,16 +53,18 @@ namespace raster_algorithms
             mouseCoord = e.Location;
         }
 
+        //при перемещении мыши рисует границе по текущей и предыдущей точке
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (isMouseDown && radioPen.Checked && lastPoint != null)
             {
                 g.DrawLine(borderPen, lastPoint, e.Location);
                 lastPoint = e.Location;
-                pictureBox1.Invalidate();
+                pictureBox1.Invalidate(); //Делает недействительной всю поверхность элемента управления и вызывает его перерисовку.
             }
         }
 
+        //мышь на элементе управления,кнопка мыши опущена
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             isMouseDown = false;
@@ -83,14 +86,14 @@ namespace raster_algorithms
                 textureFill(p);
             }
             pictureBox1.Invalidate();
-
         }
 
         private void chooseBorderColorBtn_Click(object sender, EventArgs e)
         {
             ColorDialog colorDlg = new ColorDialog();
             colorDlg.Color = borderColor;
-            if (colorDlg.ShowDialog() == DialogResult.OK)
+
+            if (colorDlg.ShowDialog() == DialogResult.OK) //если цвет выбрали,то меняем на него
             {
                 borderColor = colorDlg.Color;
                 update_pens();
@@ -102,7 +105,7 @@ namespace raster_algorithms
             ColorDialog colorDlg = new ColorDialog();
             colorDlg.Color = fillColor;
 
-            if (colorDlg.ShowDialog() == DialogResult.OK)
+            if (colorDlg.ShowDialog() == DialogResult.OK)   //если цвет выбрали,то меняем на него
             {
                 fillColor = colorDlg.Color;
                 update_pens();
@@ -190,9 +193,11 @@ namespace raster_algorithms
                 filledPoints.Add(new Point(i, y));
         }
 
+
+        // заливка текстурой
         private void textureFill(Point p)
         {
-            if (textureBrush == null)
+            if (textureBrush == null)   //если изобращения ещё нет,загружаем
                 loadFillImage();
             else
             {
@@ -201,7 +206,6 @@ namespace raster_algorithms
             }
         }
 
-        // заливка текстурой
         private void textureFill2(Point p)
         {
             Color curr = getColorAt(p);

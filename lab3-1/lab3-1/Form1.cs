@@ -22,7 +22,7 @@ namespace raster_algorithms
         Pen borderPen;
         Pen fillPen;
         TextureBrush textureBrush;
-        HashSet<Point> filledPoints = new HashSet<Point>();
+        HashSet<Point> filledPoints = new HashSet<Point>();  //набор точек для прорисовок линий
         Point mouseCoord;
         Bitmap bmp;
 
@@ -112,7 +112,7 @@ namespace raster_algorithms
             }
         }
 
-        private void loadFillImage()
+        private void loadFillImage()    //загружаем изображения для заливки
         {
             OpenFileDialog openDialog = new OpenFileDialog();
             openDialog.Filter =
@@ -137,7 +137,7 @@ namespace raster_algorithms
             loadFillImage();
         }
 
-        private Color getColorAt(Point point)
+        private Color getColorAt(Point point)   //возвращаем цвет текущей точки, чтобы проверить залили/граница/ещё не залита
         {
             if (pictureBox1.ClientRectangle.Contains(point))
                 return ((Bitmap)pictureBox1.Image).GetPixel(point.X, point.Y);
@@ -159,6 +159,7 @@ namespace raster_algorithms
                     curr = getColorAt(leftPoint);
                 }
                 leftPoint.X += 1;
+
                 curr = getColorAt(p);
                 while (curr != borderColor && pictureBox1.ClientRectangle.Contains(rightPoint))
                 {
@@ -166,6 +167,7 @@ namespace raster_algorithms
                     curr = getColorAt(rightPoint);
                 }
                 rightPoint.X -= 1;
+
                 g.DrawLine(fillPen, leftPoint, rightPoint);
 
                 for (int i = leftPoint.X; i <= rightPoint.X; ++i)
@@ -175,6 +177,7 @@ namespace raster_algorithms
                     if (upC.ToArgb() != borderColor.ToArgb() && upC.ToArgb() != fillColor.ToArgb() && pictureBox1.ClientRectangle.Contains(upPoint))
                         simpleFloodFill(upPoint);
                 }
+
                 for (int i = leftPoint.X; i < rightPoint.X; ++i)
                 {
                     Point downPoint = new Point(i, p.Y - 1);
@@ -213,12 +216,13 @@ namespace raster_algorithms
             Point rightPoint = p;
             if (!filledPoints.Contains(p) && pictureBox1.ClientRectangle.Contains(p) && curr != borderColor)
             {
-                while (curr != borderColor && pictureBox1.ClientRectangle.Contains(leftPoint))
-                {
+                while (curr != borderColor && pictureBox1.ClientRectangle.Contains(leftPoint))//идем влево пока не встречена граница 
+                {                                                                             //или не вышли за пределы picturebox
                     leftPoint.X -= 1;
                     curr = getColorAt(leftPoint);
                 }
                 leftPoint.X += 1;
+
                 curr = getColorAt(p);
                 while (curr != borderColor && pictureBox1.ClientRectangle.Contains(rightPoint))
                 {
@@ -226,8 +230,10 @@ namespace raster_algorithms
                     curr = getColorAt(rightPoint);
                 }
                 rightPoint.X -= 1;
+
                 DrawHorizontalLineTexture(leftPoint.X, rightPoint.X, leftPoint.Y);
-                for (int i = leftPoint.X; i <= rightPoint.X; ++i)
+
+                for (int i = leftPoint.X; i <= rightPoint.X; ++i)//вызываем функцию от точки выше текущей
                 {
                     Point upPoint = new Point(i, p.Y + 1);
                     Color upC = getColorAt(upPoint);
@@ -250,21 +256,10 @@ namespace raster_algorithms
             pictureBox1.Cursor = Cursors.Default;
         }
 
-        // найти точку, принадлежащую границе
-        private Point findStartPoint()
+        private void clearButton_Click(object sender, EventArgs e)
         {
-            int x = mouseCoord.X;
-            int y = mouseCoord.Y;
-
-            Color bgColor = bmp.GetPixel(mouseCoord.X, mouseCoord.Y);
-            Color currColor = bgColor;
-            while (x < bmp.Width - 2 && currColor.ToArgb() == bgColor.ToArgb())
-            {
-                x++;
-                currColor = bmp.GetPixel(x, y);
-            }
-
-            return new Point(x, y);
+            g.Clear(Color.White);
+            pictureBox1.Invalidate();
         }
 
         // выделить границу
@@ -329,6 +324,24 @@ namespace raster_algorithms
             Console.WriteLine(pixels.Count);
         }
 
+        // найти точку, принадлежащую границе
+        private Point findStartPoint()
+        {
+            int x = mouseCoord.X;
+            int y = mouseCoord.Y;
+
+            Color bgColor = bmp.GetPixel(mouseCoord.X, mouseCoord.Y);
+            Color currColor = bgColor;
+            while (x < bmp.Width - 2 && currColor.ToArgb() == bgColor.ToArgb())
+            {
+                x++;
+                currColor = bmp.GetPixel(x, y);
+            }
+
+            return new Point(x, y);
+        }
+
+        //для сравнения точек
         private int compareY(Point p1, Point p2)
         {
             if (p1.Y < p2.Y)
@@ -338,15 +351,6 @@ namespace raster_algorithms
             return -1;
         }
 
-        private void clearButton_Click(object sender, EventArgs e)
-        {
-            g.Clear(Color.White);
-            pictureBox1.Invalidate();
-        }
 
-        private void radioPen_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

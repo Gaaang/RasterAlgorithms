@@ -85,7 +85,6 @@
             this.radioPen.TabIndex = 8;
             this.radioPen.Text = "Карандаш";
             this.radioPen.UseVisualStyleBackColor = true;
-            this.radioPen.CheckedChanged += new System.EventHandler(this.radioPen_CheckedChanged);
             // 
             // radioFillColor
             // 
